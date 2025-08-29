@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-dark-950 text-slate-100 font-poppins;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent;
+  }
+  
+  .scan-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary-600 to-accent-600 hover:from-accent-600 hover:to-primary-600 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl;
+  }
+  
+  .scan-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full transition-transform duration-700;
+  }
+  
+  .scan-button:hover::before {
+    @apply translate-x-full;
+  }
+  
+  .vulnerability-card {
+    @apply glass-effect rounded-xl p-6 hover:bg-white/10 transition-all duration-300 border-l-4;
+  }
+  
+  .vulnerability-card.high {
+    @apply border-l-red-500 hover:shadow-red-500/20 hover:shadow-xl;
+  }
+  
+  .vulnerability-card.medium {
+    @apply border-l-yellow-500 hover:shadow-yellow-500/20 hover:shadow-xl;
+  }
+  
+  .vulnerability-card.low {
+    @apply border-l-green-500 hover:shadow-green-500/20 hover:shadow-xl;
+  }
+  
+  .vulnerability-card.info {
+    @apply border-l-blue-500 hover:shadow-blue-500/20 hover:shadow-xl;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .glow {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+}
+
+/* Custom animations */
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes scan-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+.particle-animation {
+  animation: particle-float 6s ease-in-out infinite;
+}
+
+.scan-pulse {
+  animation: scan-pulse 2s ease-in-out infinite;
+}
+
+.matrix-rain {
+  animation: matrix-rain 3s linear infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-500;
+}
